@@ -37,42 +37,35 @@ int main()
 
     while (true)
     {
-        if (stdio_usb_connected()) // Verifica se a conexão USB está ativa
-        {
-            // Leitura dos valores analógicos do joystick
-            int x_value = read_joystick_x();
-            int y_value = read_joystick_y();
+        // Leitura dos valores analógicos do joystick
+        int x_value = read_joystick_x();
+        int y_value = read_joystick_y();
 
-            // Exibir valores brutos do joystick para depuração
-            printf("X: %d, Y: %d\n", x_value, y_value);
+        // Ajustando os valores do joystick (sem inversão)
+        // Ajustando os valores do joystick (invertendo ambos os eixos)
+        int x_offset = (2048 - x_value) / 204; // Invertendo o eixo X
+        int y_offset = (y_value - 2048) / 204; // Invertendo o eixo Y corretamente
 
-            // Ajustando os valores do joystick (sem inversão)
-            // Ajustando os valores do joystick (invertendo ambos os eixos)
-            int x_offset = (2048 - x_value) / 204; // Invertendo o eixo X
-            int y_offset = (y_value - 2048) / 204; // Invertendo o eixo Y corretamente
+        // Atualizando a posição do quadrado no display
+        x += x_offset;
+        y += y_offset;
 
-            // Atualizando a posição do quadrado no display
-            x += x_offset;
-            y += y_offset;
+        // Limites do display
+        if (x < 0)
+            x = 0;
+        if (x > 120)
+            x = 120;
+        if (y < 0)
+            y = 0;
+        if (y > 56)
+            y = 56;
 
-            // Limites do display
-            if (x < 0)
-                x = 0;
-            if (x > 120)
-                x = 120;
-            if (y < 0)
-                y = 0;
-            if (y > 56)
-                y = 56;
+        // Atualizando o display
+        draw_pixel(&ssd, x, y);
 
-            // Atualizando o display
-            update_display(&ssd, x, y);
+        // Atualizando os LEDs
+        update_leds(x_value, y_value);
 
-            // Atualizando os LEDs
-            update_leds(x_value, y_value);
-
-            sleep_ms(100); // Delay para o loop
-        }
         sleep_ms(100); // Delay para o loop
     }
 

@@ -12,6 +12,9 @@
 
 void init_led(void);
 void update_leds(int x_value, int y_value);
-void toggle_green_led(void); // Nova função
+void toggle_green_led(void);
+void toggle_blue_led(void);
+void enable_leds(bool enable); // Declaração da nova função
+void toggle_red_led(void);     // Declaração da nova função
 
 #endif // _LED_H

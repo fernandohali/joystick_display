@@ -27,22 +27,14 @@ void init_display(ssd1306_t *ssd)
 // Função para desenhar um pixel no display
 void draw_pixel(ssd1306_t *ssd, int x, int y)
 {
-    // Desenha o quadrado 8x8 pixels na posição (x, y)
     ssd1306_rect(ssd, x, y, 8, 8, true, true); // Desenha o quadrado
     ssd1306_send_data(ssd);
-}
-
-// Função para atualizar o display com a nova posição
-void update_display(ssd1306_t *ssd, int x, int y)
-{
-    // Atualiza o display com o quadrado na nova posição
-    draw_pixel(ssd, x, y);
 }
 
 // Funções para desenhar as bordas
 void draw_border_type1(ssd1306_t *ssd)
 {
-    ssd1306_rect(ssd, 0, 0, 128, 64, true, true); // Borda cheia
+    ssd1306_rect(ssd, 3, 3, 122, 58, 0, true); // Borda cheia
     ssd1306_send_data(ssd);
 }
 
