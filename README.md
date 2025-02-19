@@ -3,7 +3,7 @@
 Este projeto implementa um sistema de navegação utilizando um joystick analógico e um display SSD1306 na placa BitDogLab com o microcontrolador RP2040. Ele explora conceitos de conversores A/D, PWM, interrupções e comunicação I2C.
 
 ## Demonstração
-[Link para o vídeo de demonstração](#)
+[Link para o vídeo de demonstração](https://www.dropbox.com/scl/fi/93c6isv1m8xdz75eb01vy/joystick-e-display.mp4?rlkey=fzigthvyg9ltxdi1r9oox6207&st=pfja6o3t&dl=0)
 
 ## Funcionalidades
 - **Controle de LEDs RGB**: Ajuste da intensidade dos LEDs Azul e Vermelho baseado nos valores do joystick.
