@@ -31,7 +31,7 @@ int main()
     init_display(&ssd);
     printf("Display inicializado.\n");
 
-    int x = 60, y = 28; // Posição inicial do quadrado
+    int x = 60, y = 30; // Posição inicial do quadrado
 
     sleep_ms(1000); // Delay para o loop
 
@@ -41,7 +41,6 @@ int main()
         int x_value = read_joystick_x();
         int y_value = read_joystick_y();
 
-        // Ajustando os valores do joystick (sem inversão)
         // Ajustando os valores do joystick (invertendo ambos os eixos)
         int x_offset = (2048 - x_value) / 204; // Invertendo o eixo X
         int y_offset = (y_value - 2048) / 204; // Invertendo o eixo Y corretamente
@@ -50,7 +49,7 @@ int main()
         x += x_offset;
         y += y_offset;
 
-        // Limites do display
+        // Limites do display (levando em conta o tamanho do quadrado de 8x8)
         if (x < 0)
             x = 0;
         if (x > 120)
@@ -60,7 +59,7 @@ int main()
         if (y > 56)
             y = 56;
 
-        // Atualizando o display
+        // Atualizando a posição do quadrado no display
         draw_pixel(&ssd, x, y);
 
         // Atualizando os LEDs
